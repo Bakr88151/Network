@@ -1,0 +1,25 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <script src="{% static 'network/network.js' %}"></script>
+    {% if user.is_authenticated %}
+        <div class="my_container">
+            <h3>New Post</h3>
+            <input type="hidden" value="{{ request.user.id }}" id="poster">
+            {{new_post_form}}
+            <br><button class="btn btn-primary" id="submit-post">Post</button>
+        </div>
+    {% endif %}
+    <div id="posts">
+    </div>
+    <input type="hidden" id="pag_len" value="{{ pag_len }}">
+    
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled" id="previous"><a class="page-link" href="#" onclick="previous()"><<</a></li>
+        {% for n in pagination_len %}
+        <li class="page-item"><a class="page-link" href="#" onclick="load_posts('{{ n }}')">{{ n }}</a></li>
+        {% endfor %}
+        <li class="page-item" id="next"><a class="page-link" href="#" onclick="next()">>></a></li>
+    </ul>
+{% endblock %}

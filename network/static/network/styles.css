@@ -1,0 +1,33 @@
+.my_container{
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.my_container *{
+    margin-bottom: 1px;
+}
+.content-input{
+    width: 100%;
+    min-height: 100px;
+    max-height: 100px;
+    border-radius: 6px;
+}
+.edit_button{
+    position: relative;
+    left: 99%;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 10px;
+    margin-right: 20px;
+    background-color: white;
+}
+.likes > img{
+    max-height: 30px;
+    width: auto;
+    color: red;
+    cursor: pointer;
+}

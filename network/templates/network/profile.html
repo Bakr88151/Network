@@ -1,0 +1,29 @@
+{% extends 'network/layout.html' %}
+{% load static %}
+{% block body %}
+    <script src="{% static 'network/profile.js' %}"></script>
+    <input type="hidden" value="{{ request.user.id }}" id="poster">
+    <h1 style="margin-left: 40px;">{{ profile.username }}</h1>
+    <div style="margin-left: 40px;">Followers: {{ followers }} Following: {{ following }}</div>
+    {% if profile.id != request.user.id and user.is_authenticated %}
+    <input type="hidden" value="{{ profile_id }}" id="profile_id">
+    <input type="hidden" value="{{is_following}}" id="is_following">
+    <button class="btn btn-primary" style="margin-left: 40px;" id="follow_button">Follow</button>
+    {% else %}
+    <input type="hidden" value="{{ profile_id }}" id="profile_id">
+    <input type="hidden" value="{{is_following}}" id="is_following">
+    <button class="btn btn-primary" style="margin-left: 40px; display: none;" id="follow_button">Follow</button>
+    {% endif %}
+    <hr>
+    <div id="posts">
+    </div>
+    <input type="hidden" id="pag_len" value="{{ pag_len }}">
+    
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled" id="previous"><a class="page-link" href="#" onclick="previous()"><<</a></li>
+        {% for n in pagination_len %}
+        <li class="page-item"><a class="page-link" href="#" onclick="load_posts('{{ n }}')">{{ n }}</a></li>
+        {% endfor %}
+        <li class="page-item" id="next"><a class="page-link" href="#" onclick="next()">>></a></li>
+    </ul>
+{% endblock %}
